@@ -1,0 +1,42 @@
+{
+  "name": "elitesystem-shipping",
+  "owner": {
+    "name": "0xelitesystem"
+  },
+  "plugins": [
+    {
+      "name": "release-guard",
+      "displayName": "Release Guard",
+      "source": "./plugins/release/release-guard",
+      "description": "Catch the ways a desktop release ships broken while every job exits zero: duplicate draft releases, colliding update manifests, a staged rollout that never rotates its cohort, certificate renewal drift under the 460 day cap, and an updater that fails open on signature verification.",
+      "version": "0.1.0",
+      "author": {
+        "name": "0xelitesystem"
+      },
+      "keywords": [
+        "electron",
+        "release",
+        "github-actions",
+        "code-signing",
+        "auto-update"
+      ]
+    },
+    {
+      "name": "repo-compliance",
+      "displayName": "Repo Compliance",
+      "source": "./plugins/repo-quality/repo-compliance",
+      "description": "The checks that must pass before a repo goes public, and the ones a linter will not do for you: licence and third-party notices, WCAG AA contrast verified by math, and honesty in every published claim.",
+      "version": "0.1.0",
+      "author": {
+        "name": "0xelitesystem"
+      },
+      "keywords": [
+        "compliance",
+        "license",
+        "accessibility",
+        "wcag",
+        "open-source"
+      ]
+    }
+  ]
+}

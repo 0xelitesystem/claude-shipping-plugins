@@ -1,0 +1,8 @@
+{
+  "name": "repo-compliance",
+  "version": "0.1.0",
+  "description": "The checks that must pass before a repo goes public, and the ones a linter will not do for you: licence and third-party notices, WCAG AA contrast verified by math, and honesty in every published claim.",
+  "author": {
+    "name": "0xelitesystem"
+  }
+}

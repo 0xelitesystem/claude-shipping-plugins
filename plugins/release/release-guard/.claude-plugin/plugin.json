@@ -1,0 +1,16 @@
+{
+  "name": "release-guard",
+  "version": "0.1.0",
+  "description": "Catch the ways a desktop release ships broken while every job exits zero: duplicate draft releases, colliding update manifests, a staged rollout that never rotates its cohort, certificate renewal drift under the 460 day cap, and an updater that fails open on signature verification.",
+  "author": {
+    "name": "0xelitesystem"
+  },
+  "homepage": "https://github.com/0xelitesystem/claude-shipping-plugins",
+  "keywords": [
+    "electron",
+    "electron-builder",
+    "electron-updater",
+    "github-actions",
+    "code-signing"
+  ]
+}
