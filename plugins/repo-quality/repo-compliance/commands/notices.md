@@ -22,6 +22,9 @@ code was taken from. Not the sidebar label, not the package manifest field, not 
 README badge, not memory. If there is no LICENSE file, stop: the work is under
 exclusive copyright and cannot be included.
 
+Before fetching, list the hosts and ask the user to confirm; if they decline, report
+those entries as unverified and do not write a holder from memory.
+
 ### Step 3: Write the entries
 Use `skill: "third-party-notices"` to:
 - copy the copyright holder line VERBATIM, character for character

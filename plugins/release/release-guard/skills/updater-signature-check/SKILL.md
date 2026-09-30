@@ -55,8 +55,12 @@ It spawns PowerShell with the module path cleared and the code page forced, with
       -NoProfile -NonInteractive -InputFormat None -Command
       "Get-AuthenticodeSignature -LiteralPath '<file>' | ConvertTo-Json -Compress"
 
-Single quotes in the path are doubled before interpolation, which is what stops a
-crafted filename from injecting a second PowerShell command.
+In the copy this was read from, ASCII single quotes (U+0027) in the path are
+doubled before interpolation; confirm this in the installed copy. That doubling is
+the only thing between a crafted filename and a second PowerShell command: `'` and
+`;` are legal in Windows filenames, and the file name is taken from the update
+feed's URL. It is also incomplete. PowerShell ends a single-quoted string on
+U+2018, U+2019, U+201A and U+201B as well, and those are not doubled.
 
 Then:
 
@@ -133,10 +137,18 @@ IMPACT            any installer the update feed serves will be executed.
   does.
 - **MUST NOT** cite line numbers you have not opened in the version the project
   actually depends on.
-- **MUST NOT** describe the PowerShell interpolation as an injection vulnerability.
-  Quotes are escaped and the path is already on disk, so it cannot contain the
-  characters Windows forbids in filenames. Describe the escaping as the mitigation
-  it is.
+- **MUST NOT** clear the PowerShell interpolation without reading it. Open
+  `verifySignature()` in the installed `windowsExecutableCodeSignatureVerifier.js`.
+  If the temp file path is interpolated into the `-Command` string with no quote
+  escaping, report command injection through a crafted update file name as
+  BLOCKING and tell the user to upgrade electron-updater. If only ASCII single
+  quotes are doubled, describe that as a partial mitigation, not a fix: U+2018,
+  U+2019, U+201A and U+201B also end a PowerShell single-quoted string and pass
+  through unescaped. Report that as command injection too, for any app with
+  `publisherName` set, and point at the HTTPS feed check and a
+  `verifyUpdateCodeSignature` override that builds no command string as the
+  remedies. Being already on disk does not make the path safe; it only rules out
+  the characters Windows forbids, and none of these quotes is one of them.
 - **MUST NOT** tell the user that signing alone secures updates. It closes this
   gap. Feed integrity, HTTPS, and manifest provenance are separate.
 - **MUST NOT** recommend disabling verification to get past
@@ -149,8 +161,9 @@ IMPACT            any installer the update feed serves will be executed.
 For an unsigned app there is exactly one finding, and it is severe: no
 verification, at all, silently. Everything else on this page is a follow-up for
 after the first certificate. For a signed app with a full DN configured and no
-override, the honest report is one line saying verification is active, plus the
-fail-open list as context, not as findings.
+override, the honest report is one line saying verification is active, any
+injection finding from reading the PowerShell interpolation (see What NOT to do),
+plus the fail-open list as context, not as findings.
 
 ## Related
 

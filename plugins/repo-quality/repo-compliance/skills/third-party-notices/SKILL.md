@@ -38,7 +38,9 @@ you copied assumes you did.
 
 2. **Fetch the upstream LICENSE file for each source.** Open the actual file at the
    actual commit or tag you took from. Not the GitHub sidebar label, not the licence
-   field in `package.json`, not the README badge, not your memory of it.
+   field in `package.json`, not the README badge, not your memory of it. Before
+   fetching, list the hosts and ask the user to confirm; if they decline, report
+   that source as unverified rather than filling the entry from memory.
 
 3. **Copy the copyright holder line verbatim.** Character for character out of that
    LICENSE. Names have initials, middle names, company suffixes, "and contributors",

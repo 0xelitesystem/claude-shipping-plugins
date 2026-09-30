@@ -81,7 +81,8 @@ repo is good.
    heading that exists. Every absolute URL to the project's own site, demo page, or
    sibling repo is one that is actually live. Check case explicitly: a link that
    works on a case-insensitive local filesystem breaks on the case-sensitive host
-   that serves the published page.
+   that serves the published page. Before fetching any URL, list the hosts and ask
+   the user to confirm; if they decline, report those links as unverified.
 
    **Why it blocks:** a README is the first and often only page a reader sees. Dead
    links in it are the visible evidence that nothing else in the repo was checked

@@ -104,13 +104,21 @@ the longer signing write-up:
 
 ## Privacy
 
-These plugins are markdown. They contain no code, no telemetry, no analytics, and
-no network calls. Nothing in this repo phones home, collects usage data, or
-transmits anything about your projects anywhere. When Claude Code runs one of these
-skills it reads your files locally, the same as any other prompt you write.
+These plugins are markdown. They contain no code, no telemetry, and no analytics.
+Nothing in this repo phones home or collects usage data. When Claude Code runs one
+of these skills it reads your files locally, the same as any other prompt you write.
 
-There is no MCP server in either plugin and no `.mcp.json`, so nothing here opens a
-connection to any service on your behalf.
+Two repo-compliance steps do reach the network, through Claude Code's own tools:
+`/ship-check` (via `compliance-gate`) checks that the outbound URLs in the audited
+README resolve, and `/notices` (via `third-party-notices`) opens each upstream
+LICENSE file. Each request goes to a host the audited repo links to or borrowed
+from, and that host sees the request and when it was made. The commands and skills
+tell Claude to list those hosts and ask you to confirm before fetching; if you
+decline, those links are reported as unverified. release-guard makes no network
+request.
+
+There is no MCP server in either plugin and no `.mcp.json`, so neither plugin opens
+a connection of its own to any service on your behalf.
 
 ## Independence
 

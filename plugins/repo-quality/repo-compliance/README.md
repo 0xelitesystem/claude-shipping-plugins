@@ -34,9 +34,17 @@ Those are the ones that reach users.
 ## Privacy
 
 These skills and commands are plain Markdown instructions. They run inside your own
-Claude Code session, read only the files you point them at, and send nothing
-anywhere. There is no telemetry, no analytics, no network call, and no bundled MCP
-server.
+Claude Code session and read only the files you point them at. There is no
+telemetry, no analytics, and no bundled MCP server.
+
+Two steps do reach the network, through Claude Code's own tools. `/ship-check` and
+`compliance-gate` check that the outbound URLs in the audited README resolve, and
+`/notices` and `third-party-notices` open each upstream LICENSE file. Each request
+goes to a host the audited repo links to or borrowed from, and that host sees the
+request and when it was made. The commands and skills tell Claude to list those
+hosts and ask you to confirm before fetching; if you decline, those links are
+reported as unverified. Apart from those requests, nothing in this plugin reaches
+the network.
 
 ## Independence
 

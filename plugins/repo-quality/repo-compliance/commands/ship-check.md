@@ -33,13 +33,17 @@ Use `skill: "compliance-gate"` to:
 - confirm every relative link, anchor, and outbound URL in the README resolves,
   with exact case
 
+Before fetching any URL, list the hosts and ask the user to confirm; if they
+decline, report those links as unverified.
+
 ### Step 3: Attribution
 Search the tree for "ported", "adapted", "derived from", "based on", "inspired by",
 and for vendored directories or files that do not match the repo's own style. If
 anything came from elsewhere, use `skill: "third-party-notices"` to build or verify
-the `## Third-party notices` section, fetching each upstream LICENSE rather than
-writing a holder from memory. If nothing was copied, confirm the README says so
-plainly where a reader might otherwise wonder.
+the `## Third-party notices` section, fetching each upstream LICENSE (after the
+same host confirmation as Step 2) rather than writing a holder from memory. If
+nothing was copied, confirm the README says so plainly where a reader might
+otherwise wonder.
 
 ### Step 4: Contrast
 If the repo ships any HTML or CSS, use `skill: "contrast-audit"` to check the palette
